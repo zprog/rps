@@ -44,7 +44,7 @@ class Player():
         self.name = name
         self.score = 0
         self.weapons = ['r', 'p', 's']
-        self.equipped = 0  # store as number
+        self.equipped = 0
 
     def choose(self):
         if not self.isHuman:
@@ -60,7 +60,6 @@ class Player():
                     print("Incorrect choice: {}\n".format(c))
                     return self.choose()
             self.equipped = self.weapons.index(c)
-        # self.msg = "\n{} threw {}".format(self.name, self.weapons[equipped])
         return self.equipped
 
     def msg(self):
