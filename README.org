@@ -1,0 +1,5 @@
+* rps
+rock, paper, scissors
+
+** Run
+~$python3 rps.py~
