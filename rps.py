@@ -1,5 +1,5 @@
 from random import randint
-from os import system
+from os import system, name
 
 
 class Game():
@@ -32,7 +32,7 @@ class Game():
 
     def stop(self):
         self.isOn = False
-        system("clear")
+        clear()
         self.score()
         print("Thanks for playing\n")
         return quit()
@@ -48,23 +48,28 @@ class Player():
 
     def choose(self):
         if not self.isHuman:
-            equipped = randint(0, 2)
+            self.equipped = randint(0, 2)
         else:
             c = input("R, P, S, q: ").lower()
-            system("clear")
+            clear()
             if c not in self.weapons:
                 if c == "q":
                     return game.stop()
                 else:
-                    system("clear")
+                    clear()
                     print("Incorrect choice: {}\n".format(c))
                     return self.choose()
-            equipped = self.weapons.index(c)
+            self.equipped = self.weapons.index(c)
         # self.msg = "\n{} threw {}".format(self.name, self.weapons[equipped])
-        return equipped
+        return self.equipped
 
-    def msg():
-        return "\n{} threw {}".format(self.name, self.weapons[equipped])
+    def msg(self):
+        return "\n{} threw {}".format(self.name, self.weapons[self.equipped])
+
+
+def clear():
+    return system('cls' if name == 'nt' else 'clear')
+
 
 if __name__ == "__main__":
     game = Game()
