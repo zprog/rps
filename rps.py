@@ -27,7 +27,7 @@ class Game():
 
     def round(self):
         c = self.p1.choose() - self.p2.choose()
-        print("{} & {}".format(self.p1.msg, self.p2.msg))
+        print("{} & {}".format(self.p1.msg(), self.p2.msg()))
         self.shoot(c)
 
     def stop(self):
@@ -45,7 +45,6 @@ class Player():
         self.score = 0
         self.weapons = ['r', 'p', 's']
         self.equipped = 0  # store as number
-        self.msg = ""
 
     def choose(self):
         if not self.isHuman:
@@ -61,9 +60,11 @@ class Player():
                     print("Incorrect choice: {}\n".format(c))
                     return self.choose()
             equipped = self.weapons.index(c)
-        self.msg = "\n{} threw {}".format(self.name, self.weapons[equipped])
+        # self.msg = "\n{} threw {}".format(self.name, self.weapons[equipped])
         return equipped
 
+    def msg():
+        return "\n{} threw {}".format(self.name, self.weapons[equipped])
 
 if __name__ == "__main__":
     game = Game()
