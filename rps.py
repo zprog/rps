@@ -19,15 +19,15 @@ class Game():
 
     def win(self, player):
         player.score += 1
-        print("\n%s wins!\n" % player.name)
+        print("\n{} wins!\n".format(player.name))
 
     def score(self):
         tally = (self.p1.score, self.p2.score)
-        print("\nScore:\nPlayer\tComputer\n%d\t%d\n" % tally)
+        print("\nScore:\nPlayer\tComputer\n{}\t{}\n".format(*tally))
 
     def round(self):
         c = self.p1.choose() - self.p2.choose()
-        print(" %s & %s" % (self.p1.msg, self.p2.msg))
+        print("{} & {}".format(self.p1.msg, self.p2.msg))
         self.shoot(c)
 
     def stop(self):
@@ -58,10 +58,10 @@ class Player():
                     return game.stop()
                 else:
                     system("clear")
-                    print("Incorrect choice: %s\n" % c)
+                    print("Incorrect choice: {}\n".format(c))
                     return self.choose()
             equipped = self.weapons.index(c)
-        self.msg = "\n%s threw %s" % (self.name, self.weapons[equipped])
+        self.msg = "\n{} threw {}".format(self.name, self.weapons[equipped])
         return equipped
 
 
