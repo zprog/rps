@@ -1,3 +1,4 @@
+import argparse
 from random import randint
 from os import system, name
 
@@ -134,13 +135,33 @@ def clear():
 
 
 def cli_game(arg):
+    """ play one round with given arg as weapon """
+
     game = Game()
     game.p1.equipped = arg
     print("{} & {}".format(game.p1.msg(), game.p2.msg()))
-    game.shoot((arg - game.p2.choose()))
-    #return game.stop()
+    return game.shoot((arg - game.p2.choose()))
+
+
+def rps_args():
+    """ parses commandline for -w option """
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-w", "--weapon", help="Choose your weapon: r, p, or s.")
+    args = parser.parse_args()
+    w = ['r', 'p', 's']
+    if args.weapon:
+        if args.weapon in w:
+            cli_game(w.index(args.weapon))
+            quit()
+        elif args.weapon not in w:
+            print("Please select: r, p, s")
+            quit()
+    else:
+        pass
 
 if __name__ == "__main__":
+    rps_args()
     game = Game()
     while game.isOn:
         game.round()
