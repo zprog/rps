@@ -16,6 +16,8 @@ class Game():
     """
 
     def __init__(self):
+        """ initialize game with default: Human vs. CPU. """
+
         self.isOn = True
         self.p1 = Player("Human")
         self.p2 = Player("Computer", isHuman=False)
@@ -70,7 +72,25 @@ class Game():
 
 
 class Player():
+    """
+    A class to represent the player
+
+    Attributes
+    ----------
+    isHuman : Boolean
+        Human: True; Computer: False
+    name : String
+        Name of the Player
+    weapons : List of chars
+        r: rock, p: paper, s: scissors
+    equipped : Int
+        selected weapon expressed as an int.
+        0: rock, 1: paper, 2: scissors
+    """
+
     def __init__(self, name, isHuman=True):
+        """initialize player with defaults"""
+
         self.isHuman = isHuman
         self.name = name
         self.score = 0
