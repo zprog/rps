@@ -2,4 +2,13 @@
 rock, paper, scissors
 
 ** Run
-~$python3 rps.py~
+- interactive: ~$python3 rps.py~
+- script: 
+#+begin_src sh :results output
+usage: rps.py [-h] [-w WEAPON]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -w WEAPON, --weapon WEAPON
+                        Choose your weapon: r, p, or s.
+#+end_src
