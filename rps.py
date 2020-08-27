@@ -133,6 +133,13 @@ def clear():
     return system('cls' if name == 'nt' else 'clear')
 
 
+def cli_game(arg):
+    game = Game()
+    game.p1.equipped = arg
+    print("{} & {}".format(game.p1.msg(), game.p2.msg()))
+    game.shoot((arg - game.p2.choose()))
+    #return game.stop()
+
 if __name__ == "__main__":
     game = Game()
     while game.isOn:
