@@ -3,12 +3,35 @@ from os import system, name
 
 
 class Game():
+    """ A class to represent the game.
+
+    Attributes
+    ----------
+    isOn : Boolean
+        Is game on or off?
+    p1 : Player() instance
+        Player One
+    p2 : Player() instance
+        Player Two
+    """
+
     def __init__(self):
         self.isOn = True
         self.p1 = Player("Human")
         self.p2 = Player("Computer", isHuman=False)
 
     def shoot(self, c):
+        """ awards a player based on the value of c.
+
+        Positional argument:
+        c -- difference between choices
+        example: p1.choice() - p2.choice() = c
+
+        c = 0 : print("Tie")
+
+        Returns score()
+        """
+
         if c == 0:
             print("\nTie\n")
         elif c in (-1, 2):
@@ -18,19 +41,27 @@ class Game():
         return self.score()
 
     def win(self, player):
+        """ increment player score"""
+
         player.score += 1
         print("\n{} wins!\n".format(player.name))
 
     def score(self):
+        """ prints cumulative score """
+
         tally = (self.p1.score, self.p2.score)
-        print("\nScore:\nPlayer\tComputer\n{}\t{}\n".format(*tally))
+        print("Score:\nPlayer\tComputer\n{}\t{}\n".format(*tally))
 
     def round(self):
+        """ basis for rps game loop """
+
         c = self.p1.choose() - self.p2.choose()
         print("{} & {}".format(self.p1.msg(), self.p2.msg()))
         self.shoot(c)
 
     def stop(self):
+        """ Stop game loop """
+
         self.isOn = False
         clear()
         self.score()
@@ -47,6 +78,14 @@ class Player():
         self.equipped = 0
 
     def choose(self):
+        """ select r, p, or s. returns int
+
+        r -- 0
+        p -- 1
+        s -- 2
+        q -- game.stop()
+        """
+
         if not self.isHuman:
             self.equipped = randint(0, 2)
         else:
@@ -63,10 +102,14 @@ class Player():
         return self.equipped
 
     def msg(self):
-        return "\n{} threw {}".format(self.name, self.weapons[self.equipped])
+        """ returns string of player and their choice """
+
+        return "{} threw {}".format(self.name, self.weapons[self.equipped])
 
 
 def clear():
+    """ clears screen. platform agnostics """
+
     return system('cls' if name == 'nt' else 'clear')
 
 
